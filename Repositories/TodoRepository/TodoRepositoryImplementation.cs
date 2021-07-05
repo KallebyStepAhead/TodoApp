@@ -1,38 +1,50 @@
+using System.Linq;
 using System.Collections.Generic;
+using ReactApp.Database;
 using ReactApp.Models;
 
 namespace ReactApp.Repositories.TodoRepository
 {
     public class TodoRepositoryImplementation : ITodoRepository
     {
+        private readonly DataContext _context;
+
+        public TodoRepositoryImplementation(DataContext context)
+        {
+            this._context = context;            
+        }
         public void CreateTodoItem(TodoItem todoItem)
         {
-            throw new System.NotImplementedException();
+            _context.TodoItems.Add(todoItem);
         }
 
         public void DeleteTodoItem(TodoItem todoItem)
         {
-            throw new System.NotImplementedException();
+            _context.TodoItems.Remove(todoItem);
         }
 
         public TodoItem GetTodoItem(int id)
         {
-            throw new System.NotImplementedException();
+            TodoItem todo = _context.TodoItems.FirstOrDefault(todo => todo.Id == id);
+
+            return todo;
         }
 
-        public IEnumerator<TodoItem> GetTodoItems()
+        public IEnumerable<TodoItem> GetTodoItems()
         {
-            throw new System.NotImplementedException();
+            List<TodoItem> todos = _context.TodoItems.ToList();
+
+            return todos;
         }
 
         public bool SaveChanges()
         {
-            throw new System.NotImplementedException();
+            return (_context.SaveChanges() > 0);
         }
 
         public void UpdateTodoItem(TodoItem todoItem)
         {
-            throw new System.NotImplementedException();
+            // Nothing
         }
     }
 }
