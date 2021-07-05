@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ReactApp.Database;
 
 namespace ReactApp
 {
@@ -22,6 +24,8 @@ namespace ReactApp
         {
 
             services.AddControllersWithViews();
+
+            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("TodoList"));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
