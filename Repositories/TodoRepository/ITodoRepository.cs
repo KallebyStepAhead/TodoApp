@@ -3,7 +3,7 @@ using ReactApp.Models;
 
 namespace ReactApp.Repositories.TodoRepository
 {
-    interface ITodoRepository 
+    public interface ITodoRepository 
     {
         bool SaveChanges();
         TodoItem GetTodoItem(int id);
