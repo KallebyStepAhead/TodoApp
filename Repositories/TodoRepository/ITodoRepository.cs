@@ -8,7 +8,7 @@ namespace ReactApp.Repositories.TodoRepository
         bool SaveChanges();
         TodoItem GetTodoItem(int id);
 
-        IEnumerator<TodoItem> GetTodoItems();
+        IEnumerable<TodoItem> GetTodoItems();
 
         void CreateTodoItem(TodoItem todoItem);
 
