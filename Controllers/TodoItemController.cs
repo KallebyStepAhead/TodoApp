@@ -25,6 +25,16 @@ namespace ReactApp.Controllers
             return Ok(result);
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<TodoItem> GetOne(int id)
+        {
+            var result = _repository.GetTodoItem(id);
+            
+            if(result == null) return NotFound();
+
+            return Ok(result);
+        }
+
         [HttpPost]
         public ActionResult<TodoItem> Create(CreateTodoItemDto data)
         {
